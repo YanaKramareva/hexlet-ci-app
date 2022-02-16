@@ -1,0 +1,30 @@
+# Name of workflow
+name: CI
+
+# Trigger the workflow on push or pull request
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    # The type of machine to run the job on
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup
+        run: make setup
+
+      - name: Start
+        run: make start
+
+      - name: Action lint
+        run: make lint
+
+      - name: test
+        run: make test
